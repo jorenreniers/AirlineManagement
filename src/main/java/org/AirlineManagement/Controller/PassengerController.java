@@ -20,13 +20,11 @@ public class PassengerController {
         this.passengerRepository = passengerRepository;
     }
 
-    // ✅ GET all passengers
     @GetMapping
     public List<Passenger> getAllPassengers() {
         return passengerRepository.findAll();
     }
 
-    // ✅ GET passenger by ID
     @GetMapping("/{id}")
     public ResponseEntity<Passenger> getPassengerById(@PathVariable Long id) {
         Optional<Passenger> optionalPassenger = passengerRepository.findById(id);
@@ -35,13 +33,11 @@ public class PassengerController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // ✅ POST (create) a new passenger
     @PostMapping
     public Passenger createPassenger(@RequestBody Passenger passenger) {
         return passengerRepository.save(passenger);
     }
 
-    // ✅ PUT (update) passenger
     @PutMapping("/{id}")
     public ResponseEntity<Passenger> updatePassenger(@PathVariable Long id, @RequestBody Passenger updatedPassenger) {
         return passengerRepository.findById(id)
@@ -56,8 +52,7 @@ public class PassengerController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // ✅ DELETE passenger
-    @DeleteMapping("/{id}")
+      @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePassenger(@PathVariable Long id) {
         if (passengerRepository.existsById(id)) {
             passengerRepository.deleteById(id);
