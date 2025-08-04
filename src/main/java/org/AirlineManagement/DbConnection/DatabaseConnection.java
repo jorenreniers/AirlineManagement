@@ -1,4 +1,4 @@
-package DbConnection;
+package org.AirlineManagement.DbConnection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
