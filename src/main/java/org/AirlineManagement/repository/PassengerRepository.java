@@ -1,6 +1,6 @@
-package org.AirlineManagement.Repository;
+package org.AirlineManagement.repository;
 
-import org.AirlineManagement.Classes.Passenger;
+import org.AirlineManagement.classes.Passenger;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

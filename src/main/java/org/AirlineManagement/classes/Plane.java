@@ -1,15 +1,12 @@
-package org.AirlineManagement.Classes;
+package org.AirlineManagement.classes;
 
 import jakarta.persistence.*;
-import jdk.jfr.Enabled;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @RequiredArgsConstructor
 @Entity
 @Table(name="plane")

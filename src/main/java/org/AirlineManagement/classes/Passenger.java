@@ -1,4 +1,4 @@
-package org.AirlineManagement.Classes;
+package org.AirlineManagement.classes;
 
 
 import jakarta.persistence.*;
