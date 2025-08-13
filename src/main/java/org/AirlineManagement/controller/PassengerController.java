@@ -54,7 +54,7 @@ public class PassengerController {
         }
 
         var updatedPassenger = PassengerMapper.MapToPassenger(passengerDto);
-        updatedPassenger.setId(id); // Zorg ervoor dat we het juiste ID behouden
+        updatedPassenger.setId(id);
         var savedPassenger = passengerService.save(updatedPassenger);
 
         return ResponseEntity.ok(PassengerMapper.MapToPassengerDto(savedPassenger));
