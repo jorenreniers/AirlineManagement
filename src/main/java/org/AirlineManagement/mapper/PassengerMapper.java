@@ -54,4 +54,15 @@ public abstract class PassengerMapper {
                 .planeId(createPassengerDto.planeId())
                 .build();
     }
+
+    public static Passenger toPassenger(CreatePassengerVo vo) {
+        return Passenger.builder()
+                .firstName(vo.firstName())
+                .name(vo.name())
+                .age(vo.age())
+                .email(vo.email())
+                .phone(vo.phone())
+                .plane(Plane.builder().id(vo.planeId()).build())
+                .build();
+    }
 }

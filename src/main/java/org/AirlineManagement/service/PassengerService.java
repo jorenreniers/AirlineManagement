@@ -6,6 +6,7 @@ import org.AirlineManagement.DTO.PassengerDto;
 import org.AirlineManagement.VO.CreatePassengerVo;
 import org.AirlineManagement.classes.Passenger;
 import org.AirlineManagement.classes.Plane;
+import org.AirlineManagement.mapper.PassengerMapper;
 import org.AirlineManagement.presentation.input.CreatePassengerDto;
 import org.AirlineManagement.repository.PassengerRepository;
 import org.AirlineManagement.repository.PlaneRepository;
@@ -24,16 +25,8 @@ public class PassengerService {
         return passengerRepository.findAll();
     }
     public Passenger save(CreatePassengerVo vo) {
-        Plane plane = planeRepository.findById(vo.planeId())
-                .orElseThrow(() -> new IllegalArgumentException("Plane not found with id " + vo.planeId()));
 
-        Passenger passenger = new Passenger();
-        passenger.setFirstName(vo.firstName());
-        passenger.setName(vo.name());
-        passenger.setAge(vo.age());
-        passenger.setEmail(vo.email());
-        passenger.setPhone(vo.phone());
-        passenger.setPlane(plane);
+        var passenger = PassengerMapper.toPassenger(vo);
         return passengerRepository.save(passenger);
     }
     public Passenger updatePassenger(Long id, PassengerDto dto) {

@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/passengers")
+@CrossOrigin(origins = "http://localhost:3000")
 public class PassengerController {
 
     private final PassengerService passengerService;
