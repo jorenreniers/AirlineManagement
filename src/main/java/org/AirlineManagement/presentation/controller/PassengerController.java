@@ -1,9 +1,10 @@
-package org.AirlineManagement.controller;
+package org.AirlineManagement.presentation.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.AirlineManagement.DTO.PassengerDto;
 import org.AirlineManagement.classes.Passenger;
 import org.AirlineManagement.mapper.PassengerMapper;
+import org.AirlineManagement.presentation.input.CreatePassengerDto;
 import org.AirlineManagement.service.PassengerService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,26 +40,27 @@ public class PassengerController {
 
 
     @PostMapping
-    public ResponseEntity<PassengerDto> createPassenger(@RequestBody PassengerDto passengerDto) {
-        var passenger = PassengerMapper.MapToPassenger(passengerDto);
-        var savedPassenger = passengerService.save(passenger);
-        return ResponseEntity.ok(PassengerMapper.MapToPassengerDto(savedPassenger));
+    public ResponseEntity<PassengerDto> createPassenger( @RequestBody CreatePassengerDto createPassengerDto) {
+        var passenger = PassengerMapper.MapToCreatePassengerVo(createPassengerDto);
+
+        Passenger savedPassenger = passengerService.save(passenger);
+
+        PassengerDto passengerDto = PassengerMapper.MapToPassengerDto(savedPassenger);
+
+        return ResponseEntity.ok(passengerDto);
     }
 
 
     @PatchMapping("/{id}")
-    public ResponseEntity<PassengerDto> updatePassenger(@PathVariable Long id,@RequestBody PassengerDto passengerDto) {
-        var existingPassenger = passengerService.findById(id);
-        if (existingPassenger == null) {
+    public ResponseEntity<PassengerDto> updatePassenger(@PathVariable Long id, @RequestBody PassengerDto passengerDto) {
+        try {
+            var savedPassenger = passengerService.updatePassenger(id, passengerDto);
+            return ResponseEntity.ok(PassengerMapper.MapToPassengerDto(savedPassenger));
+        } catch (IllegalArgumentException ex) {
             return ResponseEntity.notFound().build();
         }
-
-        var updatedPassenger = PassengerMapper.MapToPassenger(passengerDto);
-        updatedPassenger.setId(id);
-        var savedPassenger = passengerService.save(updatedPassenger);
-
-        return ResponseEntity.ok(PassengerMapper.MapToPassengerDto(savedPassenger));
     }
+
 
 
     @DeleteMapping("/{id}")

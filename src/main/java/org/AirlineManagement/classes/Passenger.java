@@ -4,6 +4,9 @@ package org.AirlineManagement.classes;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Getter
 @Setter
 @Builder
@@ -22,6 +25,8 @@ public class Passenger {
     private String email;
     private String phone;
 
-
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "plane_id")
+    private Plane plane;
 }
+

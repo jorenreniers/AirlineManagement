@@ -1,7 +1,10 @@
 package org.AirlineManagement.mapper;
 
 import org.AirlineManagement.DTO.PassengerDto;
+import org.AirlineManagement.VO.CreatePassengerVo;
 import org.AirlineManagement.classes.Passenger;
+import org.AirlineManagement.classes.Plane;
+import org.AirlineManagement.presentation.input.CreatePassengerDto;
 
 public abstract class PassengerMapper {
 
@@ -24,6 +27,31 @@ public abstract class PassengerMapper {
                 .age(passenger.getAge())
                 .email(passenger.getEmail())
                 .phone(passenger.getPhone())
+                .build();
+    }
+    public static Passenger MapToPassengerDto(CreatePassengerDto dto) {
+        Passenger passenger = new Passenger();
+        passenger.setFirstName(dto.firstName());
+        passenger.setName(dto.name());
+        passenger.setAge(dto.age());
+        passenger.setEmail(dto.email());
+        passenger.setPhone(dto.phone());
+        Plane planeRef = new Plane();
+        planeRef.setId(dto.planeId());
+        passenger.setPlane(planeRef);
+
+
+        return passenger;
+    }
+
+    public static CreatePassengerVo MapToCreatePassengerVo(CreatePassengerDto createPassengerDto) {
+        return CreatePassengerVo.builder()
+                .firstName(createPassengerDto.firstName())
+                .name(createPassengerDto.name())
+                .age(createPassengerDto.age())
+                .email(createPassengerDto.email())
+                .phone(createPassengerDto.phone())
+                .planeId(createPassengerDto.planeId())
                 .build();
     }
 }

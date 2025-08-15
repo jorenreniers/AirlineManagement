@@ -3,7 +3,7 @@ package Controllertests;
 
 import org.AirlineManagement.DTO.PassengerDto;
 import org.AirlineManagement.classes.Passenger;
-import org.AirlineManagement.controller.PassengerController;
+import org.AirlineManagement.presentation.controller.PassengerController;
 import org.AirlineManagement.service.PassengerService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,7 +11,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import org.junit.jupiter.api.Assertions;
 import org.springframework.http.ResponseEntity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
