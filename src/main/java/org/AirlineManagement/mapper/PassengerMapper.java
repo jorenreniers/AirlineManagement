@@ -16,6 +16,7 @@ public abstract class PassengerMapper {
                 .age(passengerDto.age())
                 .email(passengerDto.email())
                 .phone(passengerDto.phone())
+                .plane(Plane.builder().id(passengerDto.planeId()).build())
                 .build();
     }
 
@@ -27,9 +28,10 @@ public abstract class PassengerMapper {
                 .age(passenger.getAge())
                 .email(passenger.getEmail())
                 .phone(passenger.getPhone())
+                .planeId(passenger.getPlane() != null ? passenger.getPlane().getId() : null)
                 .build();
     }
-    public static Passenger MapToPassengerDto(CreatePassengerDto dto) {
+    public static Passenger ToPassenger(CreatePassengerDto dto) {
         Passenger passenger = new Passenger();
         passenger.setFirstName(dto.firstName());
         passenger.setName(dto.name());

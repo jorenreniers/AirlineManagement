@@ -9,7 +9,8 @@ public record PassengerDto(
         String name,
         int age,
         String email,
-        String phone
+        String phone,
+        Long planeId
 ) {
 
 }

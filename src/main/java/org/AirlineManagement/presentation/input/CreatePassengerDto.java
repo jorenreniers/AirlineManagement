@@ -1,12 +1,15 @@
 package org.AirlineManagement.presentation.input;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+
 public record CreatePassengerDto (
         String name,
         String firstName,
         int age,
-        String email,
+        @Email String email,
         String phone,
-        Long planeId
+        @NotNull Long planeId
 
 
 ){
